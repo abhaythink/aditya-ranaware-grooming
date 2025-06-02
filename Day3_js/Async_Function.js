@@ -3,7 +3,7 @@ function sayHi() {
     setTimeout(() => {
       console.log("welcome 1");
       resolve("Aditya");
-    }, 1000);
+    }, 3000);
   });
 }
 
@@ -12,24 +12,30 @@ function sayHi2() {
     setTimeout(() => {
       console.log("welcome 2");
       resolve("Aditya");
-    }, 2000);
-  });
-}
-function sayHi3() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log("welcome 3");
-      resolve("Aditya");
     }, 3000);
   });
 }
+async function sayHi3() {
+ return new Promise((resolve,reject)=>setTimeout(() => {
+      console.log("welcome 2"); 
+      reject("By")
+    }, 3000));
+    
+}
 async function display() {
+  try{
   let result = await sayHi3();
   console.log(result);
     let result1 = await sayHi2();
     console.log(result1);
     let result2 = await sayHi();
     console.log(result2);
+  }
+  catch(error)
+  {
+    console.log("Error Occures"+error)
+
+  }
 }
 display();
 
