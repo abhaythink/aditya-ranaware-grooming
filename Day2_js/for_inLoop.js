@@ -13,7 +13,7 @@ for(var prop in person) {
 
 Array.prototype.abc = 100;
 const items=[10,50,60,20,30]
-let total=0
+let total=0;
 
 for(let prop in items){
     console.log(prop, items[prop])
@@ -22,7 +22,7 @@ for(let prop in items){
 
 for(let prop of items){
     console.log(prop, items[prop])
-    total+=items[prop];
+    total+=prop;
 }
 
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Load JSON Example</title>
+</head>
+<body>
+  <h2>Click the button to load message</h2>
+  <button id="btnGet">Get Message</button>
+  <p id="message"></p>
+
+  <script>
+    function load(url) {
+      return new Promise(function (resolve, reject) {
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+          if (this.readyState === 4) {
+            if (this.status == 200) {
+              resolve(this.response);
+            } else {
+              reject(this.status);
+            }
+          }
+        };
+        request.open('GET', url, true);
+        request.send();
+      });
+    }
+
+    const url = 'https://jsonplaceholder.typicode.com/posts/1'; // CORS-enabled
+
+    // const url = 'https://www.javascripttutorial.net/sample/promise/api.json';
+    const btn = document.querySelector('#btnGet');
+    const msg = document.querySelector('#message');
+
+    btn.addEventListener('click', () => {
+        console.log("button clicked")
+      load(url)
+        .then((response) => {
+          const result = JSON.parse(response);
+          msg.innerHTML = result.body;
+        })
+        .catch((error) => {
+          msg.innerHTML = `Error getting the message, HTTP status: ${error}`;
+        });
+    });
+  </script>
+</body>
+</html>
