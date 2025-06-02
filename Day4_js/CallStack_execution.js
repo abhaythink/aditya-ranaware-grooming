@@ -15,7 +15,7 @@ queueMicrotask(()=>{                //goto microtask
 console.log(5);     // execute first
 
 
-
+//callstack-eventloop-webapi-task queue
 //note first execute all code line by line ---if promise /await/async funxtions are occurs all go to microtask
 // async funtions go to web Api ... after execution done go to task queue
 // after line by line execution done --- event loop first check microtask queue .. if he got task then microtasks run firstly
